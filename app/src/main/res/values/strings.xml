@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Atmosware_internship_project</string>
+    <string name="photos">Photos</string>
+    <string name="comments">Comments</string>
 </resources>

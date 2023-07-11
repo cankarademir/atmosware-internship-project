@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_comments">
+
+    <fragment
+        android:id="@+id/navigation_comments"
+        android:name="com.cankarademir.atmosware_internship_project.ui.comments.CommentsFragment"
+        android:label="fragment_comments"
+        tools:layout="@layout/fragment_comments" >
+        <action
+            android:id="@+id/action_commentsFragment_to_photosFragment"
+            app:destination="@id/navigation_photos" />
+        <action
+            android:id="@+id/action_commentsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.cankarademir.atmosware_internship_project.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_photosFragment"
+            app:destination="@id/navigation_photos" />
+        <action
+            android:id="@+id/action_detailFragment_to_commentsFragment"
+            app:destination="@id/navigation_comments" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_photos"
+        android:name="com.cankarademir.atmosware_internship_project.ui.photos.PhotosFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" >
+        <action
+            android:id="@+id/action_photosFragment_to_commentsFragment"
+            app:destination="@id/navigation_comments" />
+        <action
+            android:id="@+id/action_photosFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.cankarademir.atmosware_internship_project.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_commentsFragment"
+            app:destination="@id/navigation_comments" />
+    </fragment>
+</navigation>
