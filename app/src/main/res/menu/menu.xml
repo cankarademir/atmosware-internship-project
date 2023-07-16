@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_comments"
-        android:icon="@drawable/baseline_comment_24"
-        android:title="@string/comments" />
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/baseline_person_24"
+        android:title="@string/user" />
     <item
         android:id="@+id/navigation_photos"
         android:icon="@android:drawable/ic_menu_gallery"

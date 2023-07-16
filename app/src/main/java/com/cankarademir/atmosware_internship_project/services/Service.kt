@@ -1,16 +1,16 @@
 package com.cankarademir.atmosware_internship_project.services
 
-import com.cankarademir.atmosware_internship_project.models.Comments
 import com.cankarademir.atmosware_internship_project.models.Photos
+import com.cankarademir.atmosware_internship_project.models.Users
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface Service {
 
-    @GET("/photos")
-    fun getPhotos(): Call<Photos>
+    @GET("photos")
+    fun getPhotos(): Call<List<Photos>>
 
-    @GET("/comments")
-    fun getComments(): Call<Comments>
+    @GET("users")
+    fun getUsers(): Call<List<Users>>
 
 }

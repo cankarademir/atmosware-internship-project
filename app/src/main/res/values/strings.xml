@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Atmosware_internship_project</string>
     <string name="photos">Photos</string>
-    <string name="comments">Comments</string>
+    <string name="user">User</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="LoginTitle">Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

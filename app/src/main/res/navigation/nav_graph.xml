@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_user">
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="com.cankarademir.atmosware_internship_project.ui.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/action_commentsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.cankarademir.atmosware_internship_project.ui.details.DetailUserFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail_user" >
+        <argument
+            android:name="userData"
+            app:argType="com.cankarademir.atmosware_internship_project.models.Users" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_photos"
+        android:name="com.cankarademir.atmosware_internship_project.ui.photos.PhotosFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" >
+        <action
+            android:id="@+id/action_navigation_photos_to_detailPhotoFragment"
+            app:destination="@id/detailPhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPhotoFragment"
+        android:name="com.cankarademir.atmosware_internship_project.ui.details.DetailPhotoFragment"
+        android:label="fragment_detail_photo"
+        tools:layout="@layout/fragment_detail_photo" >
+        <argument
+            android:name="photoData"
+            app:argType="com.cankarademir.atmosware_internship_project.models.Photos" />
+    </fragment>
+</navigation>

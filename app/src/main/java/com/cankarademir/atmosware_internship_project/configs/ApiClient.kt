@@ -1,28 +1,20 @@
 package com.cankarademir.atmosware_internship_project.configs
 
-import okhttp3.OkHttpClient
+import com.cankarademir.atmosware_internship_project.services.Service
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+
 
 object ApiClient {
 
     private val Base_URL = "https://jsonplaceholder.typicode.com/"
-    private var retrofit: Retrofit? = null
 
-    val client = OkHttpClient.Builder()
-        .readTimeout(60, TimeUnit.SECONDS)
+    private val retrofit = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(Base_URL)
         .build()
 
-    fun getClient(): Retrofit {
-        if (retrofit == null) {
-            retrofit = Retrofit
-                .Builder()
-                .baseUrl(Base_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-        }
-        return retrofit as Retrofit
+    val retrofitService: Service by lazy {
+        retrofit.create(Service::class.java)
     }
 }
