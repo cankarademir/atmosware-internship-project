@@ -1,34 +1,34 @@
 package com.cankarademir.atmosware_internship_project.ui.photos
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.cankarademir.atmosware_internship_project.configs.ApiClient
 import com.cankarademir.atmosware_internship_project.models.Photos
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PhotosViewModel : ViewModel() {
 
     val data: MutableLiveData<List<Photos>> = MutableLiveData()
 
     fun getPhotosData() {
-        val apiService = ApiClient.retrofitService
-        val call = apiService.getPhotos()
-
-        call.enqueue(object : Callback<List<Photos>> {
-            override fun onResponse(
-                call: Call<List<Photos>>,
-                response: Response<List<Photos>>
-            ) {
+        viewModelScope.launch {
+            try {
+                val apiService = ApiClient.retrofitService
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getPhotos().execute()
+                }
                 if (response.isSuccessful) {
                     data.value = response.body()
+                    Log.d("MainLog", data.value.toString())
                 }
-            }
-
-            override fun onFailure(call: Call<List<Photos>>, t: Throwable) {
+            } catch (e: Exception) {
                 // Hata durumunda gerekli işlemleri yapabilirsiniz
+                Log.d("can", "HataaPhotoViewModel")
             }
-        })
+        }
     }
 }

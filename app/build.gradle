@@ -64,6 +64,12 @@ dependencies {
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
 
+    //room
+    def room_version = "2.5.1"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation "androidx.room:room-ktx:$room_version"
+
     //glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
 

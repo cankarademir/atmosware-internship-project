@@ -34,11 +34,20 @@
     </fragment>
     <fragment
         android:id="@+id/detailPhotoFragment"
-        android:name="com.cankarademir.atmosware_internship_project.ui.details.DetailPhotoFragment"
+        android:name="com.cankarademir.atmosware_internship_project.ui.details.detailPhoto.DetailPhotoFragment"
         android:label="fragment_detail_photo"
         tools:layout="@layout/fragment_detail_photo" >
         <argument
             android:name="photoData"
             app:argType="com.cankarademir.atmosware_internship_project.models.Photos" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="com.cankarademir.atmosware_internship_project.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_navigation_favorites_to_detailPhotoFragment"
+            app:destination="@id/detailPhotoFragment" />
     </fragment>
 </navigation>

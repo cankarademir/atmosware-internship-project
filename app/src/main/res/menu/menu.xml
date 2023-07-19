@@ -9,5 +9,9 @@
         android:id="@+id/navigation_photos"
         android:icon="@android:drawable/ic_menu_gallery"
         android:title="@string/photos" />
+    <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/icon_favorite"
+        android:title="@string/favorites" />
 
 </menu>
