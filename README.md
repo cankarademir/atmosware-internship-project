@@ -59,6 +59,3 @@ Glide | 4.15.1
 <a href="https://github.com/cankarademir/atmosware-internship-project/blob/master/images/8.png" target="_blank">
 <img src="https://github.com/cankarademir/atmosware-internship-project/blob/master/images/8.png"  width="200" style="max-width:100%;"></a>
 
-</p>
-  
--> The application was made for the purpose of the Turkcell GyGy bootcamp Final Project. <-
