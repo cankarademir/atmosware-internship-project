@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 class DetailPhotoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val favoriteDao: FavoriteDao
-    private val allFavorites = MutableLiveData<List<Photos>>()
+    val allFavorites = MutableLiveData<List<Photos>?>()
 
     init {
         val database = FavoriteDatabase.getDatabase(application)
@@ -24,12 +24,14 @@ class DetailPhotoViewModel(application: Application) : AndroidViewModel(applicat
     fun insertFavorite(favoriteData: Photos) {
         viewModelScope.launch(Dispatchers.IO) {
             favoriteDao.insertFavorite(favoriteData)
+            fillFavoriteList()
         }
     }
 
     fun deleteFavorite(favoriteData: Photos) {
         viewModelScope.launch(Dispatchers.IO) {
             favoriteDao.deleteFavorite(favoriteData.id)
+            fillFavoriteList()
         }
     }
 
@@ -39,8 +41,8 @@ class DetailPhotoViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     suspend fun fillFavoriteList(){
-        allFavorites.value = withContext(Dispatchers.IO) {
+        allFavorites.postValue(withContext(Dispatchers.IO) {
             favoriteDao.getFavorites()
-        }!!
+        })
     }
 }

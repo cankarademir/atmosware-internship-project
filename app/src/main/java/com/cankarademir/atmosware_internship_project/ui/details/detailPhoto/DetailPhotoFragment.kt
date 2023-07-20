@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.cankarademir.atmosware_internship_project.R
+import com.cankarademir.atmosware_internship_project.configs.FavoriteDatabase
 import com.cankarademir.atmosware_internship_project.databinding.FragmentDetailPhotoBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -31,14 +32,23 @@ class DetailPhotoFragment : Fragment() {
             val safeArgs = DetailPhotoFragmentArgs.fromBundle(it)
             binding.data = safeArgs.photoData
         }
+        val FavoriteButton = binding.favoriteButton
 
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.fillFavoriteList()
         }
 
-        val FavoriteButton = binding.favoriteButton
-        FavoriteButton.setOnClickListener {
+        // Favori butonunun başlangıçtaki görselini belirliyor
+        viewModel.allFavorites.observe(viewLifecycleOwner) { favoritesList ->
+            val photoData = binding.data
+            if (favoritesList!!.any { it.id == photoData?.id }) {
+                binding.favoriteButton.setImageResource(R.drawable.icon_favorite)
+            } else {
+                binding.favoriteButton.setImageResource(R.drawable.icon_favorite_border)
+            }
+        }
 
+        FavoriteButton.setOnClickListener {
             val photoData = binding.data
             //photoData varsa tıklama işlemi yapılınca favori tablosuna ekle
             if (photoData != null) {
