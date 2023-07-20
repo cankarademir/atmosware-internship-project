@@ -54,12 +54,12 @@ class DetailPhotoFragment : Fragment() {
             if (photoData != null) {
                 if (viewModel.isFavorite(photoData)) {
                     viewModel.deleteFavorite(photoData)
-                    Toast.makeText(requireContext(), "Favorilerden çıkarıldı", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "deleted from favorites", Toast.LENGTH_SHORT)
                         .show()
                     FavoriteButton.setImageResource(R.drawable.icon_favorite_border)
                 } else {
                     viewModel.insertFavorite(photoData)
-                    Toast.makeText(requireContext(), "Favorilere eklendi", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT)
                         .show()
                     FavoriteButton.setImageResource(R.drawable.icon_favorite)
                 }
