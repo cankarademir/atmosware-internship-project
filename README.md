@@ -20,7 +20,7 @@ Name  | Version
 Android Studio | Flamingo 2022.2.1
 Kotlin | 1.8.0
 Retrofit | 2.9.0
-Coroutines | 4.15.1
+Coroutines | 1.6.4
 Navigation | 2.6.0
 Room | 2.5.1
 Glide | 4.15.1
