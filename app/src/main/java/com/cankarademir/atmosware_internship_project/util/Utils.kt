@@ -20,5 +20,6 @@ class Utils {
         fun downloadImage(view: ImageView, img_src: String?) {
             view.downloadFromUrl(img_src)
         }
+
     }
 }
