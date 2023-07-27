@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.cankarademir.atmosware_internship_project.dao.FavoriteDao
 import com.cankarademir.atmosware_internship_project.models.Photos
 
-@Database(entities = [Photos::class], version = 1)
+@Database(entities = [Photos::class], version = 2)
 abstract class FavoriteDatabase: RoomDatabase() {
     abstract fun FavoriteDao(): FavoriteDao
     companion object {

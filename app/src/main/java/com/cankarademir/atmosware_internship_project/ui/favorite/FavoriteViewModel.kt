@@ -21,7 +21,7 @@ class FavoriteViewModel(application: Application) : AndroidViewModel(application
                 data.value = allfavorites
             } catch (e: Exception) {
                 // Hata durumunda gerekli işlemleri yapabilirsiniz
-                Log.d("can", "HataaPhotoViewModel")
+                Log.d("can", "HataaFavoriteViewModel")
             }
         }
     }

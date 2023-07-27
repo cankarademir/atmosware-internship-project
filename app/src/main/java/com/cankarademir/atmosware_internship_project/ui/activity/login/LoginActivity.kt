@@ -3,6 +3,7 @@ package com.cankarademir.atmosware_internship_project.ui.activity.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.cankarademir.atmosware_internship_project.R
@@ -23,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult) {
                 navigateToHomeActivity()
             } else {
-                // Login başarısız ise yapılacak işlemler
+                Toast.makeText(applicationContext, "Failed to login. Please enter your correct username and password", Toast.LENGTH_LONG).show()
             }
         }
     }

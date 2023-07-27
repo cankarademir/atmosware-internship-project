@@ -8,10 +8,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "favorite_table")
 data class Photos (
-    val albumID: Long? = null,
+    val albumId: Long? = null,
     @PrimaryKey
     val id: Long? = null,
     val title: String? = null,
     val url: String,
-    val thumbnailURL: String? = null
+    val thumbnailUrl: String? = null
 ): Parcelable
