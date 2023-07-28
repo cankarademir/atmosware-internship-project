@@ -23,6 +23,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -63,13 +65,14 @@ class FavoriteFragment : Fragment() {
 @Composable
 fun FavoriteFragmentt(navController: NavController, viewModel: FavoriteViewModel) {
 
-    viewModel.getPhotosData()
-    // Verileri ViewModel'den almak için etkileşime geçerken viewModel.getPhotosData() çağırın
+    val dataList: List<Photos>? by viewModel.data.collectAsState(initial = emptyList())
+
     LaunchedEffect(viewModel) {
         viewModel.getPhotosData()
     }
-    val dataList: List<Photos>? = viewModel.data.value
+
     Column(modifier = Modifier.fillMaxSize()) {
+
         dataList?.let { photosList ->
             CustomRecyclerView(dataList = photosList) { item ->
                 val action = FavoriteFragmentDirections.actionNavigationFavoritesToDetailPhotoFragment(item)
@@ -77,7 +80,6 @@ fun FavoriteFragmentt(navController: NavController, viewModel: FavoriteViewModel
             }
         }
     }
-
 }
 
 @Composable
@@ -85,7 +87,9 @@ fun CustomRecyclerView(dataList: List<Photos>, onItemClick: (Photos) -> Unit) {
     Column() {
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
-            modifier = Modifier.fillMaxSize().padding(8.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
             contentPadding = PaddingValues(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -119,8 +123,6 @@ fun ComposeItemPhoto(photos: Photos, onItemClick: (Photos) -> Unit) {
         }
     }
 }
-
-
 
 @Composable
 fun RemoteImage(url: String, contentDescription: String) {
