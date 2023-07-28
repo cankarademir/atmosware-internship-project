@@ -10,12 +10,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -28,6 +28,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.databinding.DataBindingUtil
@@ -39,7 +43,12 @@ import com.cankarademir.atmosware_internship_project.databinding.FragmentFavorit
 import com.cankarademir.atmosware_internship_project.models.Photos
 
 class FavoriteFragment : Fragment() {
-    private val navController by lazy { Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main) }
+    private val navController by lazy {
+        Navigation.findNavController(
+            requireActivity(),
+            R.id.nav_host_fragment_activity_main
+        )
+    }
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var favoriteViewModel: FavoriteViewModel
 
@@ -57,7 +66,7 @@ class FavoriteFragment : Fragment() {
         favoriteViewModel.getPhotosData()
 
         binding.composeView.setContent {
-            FavoriteFragmentt(navController,viewModel = favoriteViewModel)
+            FavoriteFragmentt(navController, viewModel = favoriteViewModel)
         }
     }
 }
@@ -66,16 +75,16 @@ class FavoriteFragment : Fragment() {
 fun FavoriteFragmentt(navController: NavController, viewModel: FavoriteViewModel) {
 
     val dataList: List<Photos>? by viewModel.data.collectAsState(initial = emptyList())
-
     LaunchedEffect(viewModel) {
         viewModel.getPhotosData()
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-
+        TitleText(R.string.FavoriteTitle)
         dataList?.let { photosList ->
             CustomRecyclerView(dataList = photosList) { item ->
-                val action = FavoriteFragmentDirections.actionNavigationFavoritesToDetailPhotoFragment(item)
+                val action =
+                    FavoriteFragmentDirections.actionNavigationFavoritesToDetailPhotoFragment(item)
                 navController.navigate(action)
             }
         }
@@ -89,9 +98,6 @@ fun CustomRecyclerView(dataList: List<Photos>, onItemClick: (Photos) -> Unit) {
             columns = GridCells.Fixed(3),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(8.dp),
-            contentPadding = PaddingValues(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(dataList) { item ->
                 ComposeItemPhoto(photos = item, onItemClick = onItemClick)
@@ -99,6 +105,7 @@ fun CustomRecyclerView(dataList: List<Photos>, onItemClick: (Photos) -> Unit) {
         }
     }
 }
+
 @Composable
 fun ComposeItemPhoto(photos: Photos, onItemClick: (Photos) -> Unit) {
     Surface(
@@ -132,9 +139,28 @@ fun RemoteImage(url: String, contentDescription: String) {
         painter = painter,
         contentDescription = contentDescription,
         modifier = Modifier
-            .height(120.dp)
+            .height(190.dp)
+            .width(190.dp),
+        contentScale = ContentScale.Crop
     )
 }
 
-
+@Composable
+fun TitleText(title: Int) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(id = title),
+            style = TextStyle(
+                fontSize = 21.sp,
+                color = Color(0xFF6750A4),
+                fontWeight = FontWeight.Bold
+            ),
+            modifier = Modifier.padding(top = 8.dp)
+        )
+    }
+}
 
