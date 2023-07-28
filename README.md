@@ -24,6 +24,7 @@ Coroutines | 1.6.4
 Navigation | 2.6.0
 Room | 2.5.1
 Glide | 4.15.1
+Compose | 1.7.2
 
 </p>
 
