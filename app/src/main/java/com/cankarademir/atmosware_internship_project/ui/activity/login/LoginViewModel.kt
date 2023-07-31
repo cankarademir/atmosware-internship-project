@@ -9,11 +9,14 @@ class LoginViewModel : ViewModel() {
     val password = MutableLiveData<String>()
     val loginResult = MutableLiveData<Boolean>()
 
+    var USERNAME= "kullanici"
+    var PASSWORD= "123456"
+
     fun login() {
         val enteredUsername = username.value
         val enteredPassword = password.value
 
-        val loginSuccessful = (enteredUsername == "kullanici" && enteredPassword == "123456")
+        val loginSuccessful = (enteredUsername == USERNAME && enteredPassword == PASSWORD )
         loginResult.value = loginSuccessful
     }
 }
